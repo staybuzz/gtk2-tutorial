@@ -30,8 +30,10 @@ button = Gtk::Button.new("Post")
 button.signal_connect("clicked") do # ボタンが押された時の処理
   str = entry.text
   entry.text = ""
-  it.set_value( 0, Time.now.to_s )
-  it.set_value( 1, str )
+  it = list_store.append
+  it[0] = Time.now.to_s
+  it[1] = str
+  view = Gtk::TreeView.new(list_store)
 end
 
 vbox = Gtk::VBox.new(false,0)
